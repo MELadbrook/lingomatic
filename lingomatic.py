@@ -7,10 +7,16 @@ class Language:
     HARD = ['t', 'q', 'd', 'k', 'g', 'c', 'b', 'z', 'x']
     VOWELS = ['a', 'i', 'o', 'u', 'e']
 
-    def __init__(self, harshness):
-        self.harshness = Language.create_custom_phonemes(self, harshness)
+    def __init__(self):
+        pass
 
     def create_word(self, length):
+        word = ''
+        for letter in range(0, length):
+            word = word + self.PHONEMES[random.randint(0, len(self.PHONEMES) - 1)]
+        return word
+
+'''    def create_word(self, length):
         word = ''
         for letter in range(0, length):
             word = word + Language.PHONEMES[random.randint(0, len(Language.PHONEMES)-1)]
@@ -43,6 +49,12 @@ class Language:
         sentence = ''
         for word in range(0, no_of_words):
             sentence = sentence + create_varied_word(random.randint(range_of_word_lengths[0], range_of_word_lengths[1])) + ' '
-        return sentence
+        return sentence'''
 
-print(Language(0.4))
+example = Language()
+
+
+
+print(example.VOWELS)
+print(example.create_word(12))
+
