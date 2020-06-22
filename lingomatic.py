@@ -39,20 +39,20 @@ class CustomPhoneme(Language):
         custom_phoneme.extend(self.VOWELS)
         return custom_phoneme
 
-'''    def create_varied_word(self, length):
+    def create_varied_word(self, length):
         word = ''
         for letter in range(0, length):
-            word = word + custom[random.randint(0, len(custom)-1)]
+            word = word + self.phoneme[random.randint(0, len(self.phoneme)-1)]
         return word
 
     def create_varied_sentence(self, no_of_words, range_of_word_lengths):
         sentence = ''
         for word in range(0, no_of_words):
-            sentence = sentence + create_varied_word(random.randint(range_of_word_lengths[0], range_of_word_lengths[1])) + ' '
-        return sentence'''
+            sentence = sentence + self.create_varied_word(random.randint(1, range_of_word_lengths)) + ' '
+        return sentence
 
 example = Language()
-example_subclass = CustomPhoneme(0.5)
+example_subclass = CustomPhoneme(0)
 
 
 
@@ -60,4 +60,6 @@ print(example.VOWELS)
 print(example.create_word(12))
 print(example.create_sentence(16, 12))
 print(example_subclass.phoneme)
+print(example_subclass.create_varied_word(13))
+print(example_subclass.create_varied_sentence(13, 6))
 
