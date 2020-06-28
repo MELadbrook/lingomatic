@@ -8,12 +8,13 @@ class Language:
     VOWELS = ['a', 'i', 'o', 'u', 'e']
 
     def __init__(self):
-        pass
+        self.phoneme = self.PHONEMES
+        self.vocabulary = self.create_vocabulary(random.randint(5, 50), random.randint(1, 20))
 
     def create_word(self, length):
         word = ''
         for letter in range(0, length):
-            word = word + self.PHONEMES[random.randint(0, len(self.PHONEMES) - 1)]
+            word = word + self.phoneme[random.randint(0, len(self.phoneme) - 1)]
         return word
 
     def create_sentence(self, no_of_words, word_length):
@@ -26,12 +27,19 @@ class Language:
         sentence = sentence[0].upper() + sentence[1:]
         return sentence + "."
 
+    def create_vocabulary(self, number_of_words, word_length):
+        vocab_list = {}
+        for word in range(number_of_words):
+            vocab_list['Word {}'.format(str(word))] = self.create_word(random.randint(1, word_length))
+        return vocab_list
+
 
 class CustomPhoneme(Language):
     def __init__(self, rating):
         super().__init__()
         self.rating = rating
         self.phoneme = self.create_custom_phonemes()
+        self.vocabulary = self.create_vocabulary(random.randint(5, 50), random.randint(1, 20))
 
     def create_custom_phonemes(self):
         custom_phoneme = []
@@ -45,13 +53,16 @@ class CustomPhoneme(Language):
 
 
 example = Language()
-example_subclass = CustomPhoneme(0)
+example_subclass = CustomPhoneme(1)
 
 
 
-print(example_subclass.PHONEMES)
+print(example.phoneme)
+print(example.create_word(12))
 print(example_subclass.phoneme)
 print(example_subclass.create_word(12))
-print(example.create_sentence(25, 9))
-print(example_subclass.sentencify(example_subclass.create_sentence(12, 17)))
+#print(example.create_sentence(25, 9))
+#print(example_subclass.sentencify(example_subclass.create_sentence(12, 17)))
+print(example.vocabulary)
+print(example_subclass.vocabulary)
 
